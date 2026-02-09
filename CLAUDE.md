@@ -13,13 +13,23 @@ This is the Claude Code workspace for a small web/marketing agency. The agent te
 - Make purchases or commit to costs
 - Respond to client complaints
 
+### Never Do (Security)
+- Store passwords, API keys, or tokens in any file — use credential references only
+- Access `.env`, `credentials.*`, or `secrets/` files
+- Include client emails, phone numbers, or PII in log entries — use client slug only
+- Read client directories outside of your assigned task scope
+- Write output to directories other than your designated output folders
+- Bypass or disable the audit logger
+
 ### Always Do
 - Write changes to staging/preview first
-- Log every action to `logs/YYYY-MM-DD.md`
+- Log every action via `scripts/audit-logger.sh` (tamper-evident audit trail)
+- Also log to `logs/YYYY-MM-DD.md` for human-readable daily summaries
 - Flag anything urgent with `🚨 URGENT:` prefix in logs
 - Include before/after evidence for any change
 - Estimate time and cost before starting work
 - Ask for clarification rather than guessing
+- Follow the data classification rules in `security/SECURITY-POLICY.md`
 
 ### File Structure
 ```
@@ -43,10 +53,15 @@ agency-agents/
 │   └── sales/CLAUDE.md
 ├── skills/                      ← Skill definitions for agent tasks
 │   └── client-report/SKILL.md  ← PPTX report design & structure guide
+├── security/                    ← Security policy and data classification
+│   └── SECURITY-POLICY.md
 ├── scripts/                     ← Shared automation scripts
+│   ├── secrets-check.sh        ← Scan for leaked credentials
+│   └── audit-logger.sh         ← Tamper-evident audit trail
 ├── templates/                   ← Report, email, proposal templates
 ├── workflows/                   ← Multi-agent workflow definitions
 ├── logs/                        ← Daily action logs
+│   └── audit/                  ← Hash-chained audit trail
 └── docs/                        ← Strategy, processes, reference
 ```
 
@@ -61,7 +76,7 @@ hosting: siteground
 plan: standard  # basic | standard | premium
 monthly_fee: 600
 contact_name: Jane Smith
-contact_email: jane@example-client.com
+contact_email: jane@example.com
 services:
   - maintenance
   - seo

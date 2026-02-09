@@ -138,10 +138,15 @@ agency-agents/
 ├── skills/                  ← Skill definitions for agent tasks
 │   └── client-report/SKILL.md   ← Report design guide
 │
+├── security/                ← Security policy and data classification
+│   └── SECURITY-POLICY.md
+│
 ├── scripts/                 ← Utility scripts
 │   ├── run-agent.sh         ← Run individual agents
 │   ├── health-check.sh      ← Automated health checker
-│   └── onboard-client.sh    ← New client setup
+│   ├── onboard-client.sh    ← New client setup
+│   ├── secrets-check.sh     ← Scan for leaked credentials
+│   └── audit-logger.sh      ← Tamper-evident audit trail
 │
 ├── workflows/               ← Multi-agent workflows
 │   ├── daily.sh             ← Daily orchestration (cron job)
@@ -164,6 +169,7 @@ agency-agents/
 │       └── content/
 │
 ├── logs/                    ← Daily action logs (auto-created)
+│   └── audit/               ← Hash-chained audit trail
 └── templates/               ← Report and email templates
 ```
 
@@ -178,18 +184,39 @@ This repo is built around a Sheffield (UK) web agency as a worked example. To ad
 5. **Edit `workflows/prospects-queue.yaml`** — customize for your sales process
 6. **Update local references** — replace Sheffield-specific content with your own market
 
-## Safety Rails
+## Security
 
-Every agent has these hard limits:
+Every agent has hard safety limits (no production changes, no client contact, no credential storage, no deleting, staging-first, log everything). See `security/SECURITY-POLICY.md` for the full policy including data classification, agent access controls, and incident response.
 
-- **No production changes** without founder approval
-- **No client contact** — all communications go through humans
-- **No credential storage** in any file
-- **No purchases or commitments** without approval
-- **No deleting** databases, files, or backups
-- **Always staging first** for any changes
-- **Always log everything** with timestamps
-- **Always flag urgent** items with 🚨
+### Secrets Scanner
+
+Scan for leaked credentials before committing:
+
+```bash
+./scripts/secrets-check.sh              # Full project scan
+./scripts/secrets-check.sh --staged     # Git pre-commit (staged files only)
+```
+
+Detects API keys, passwords, tokens, private keys, cloud credentials, PII (emails, phone numbers), and sensitive file types. Set it as a git pre-commit hook:
+
+```bash
+ln -s ../../scripts/secrets-check.sh .git/hooks/pre-commit
+```
+
+### Audit Trail
+
+Tamper-evident logging with SHA-256 hash chains — any modification to previous entries is detectable:
+
+```bash
+./scripts/audit-logger.sh log maintenance "updated-plugins" "3 plugins on staging"
+./scripts/audit-logger.sh security qa "access-violation" "Attempted to read .env"
+./scripts/audit-logger.sh verify 2025-02-08    # Check integrity
+./scripts/audit-logger.sh summary              # Daily summary
+```
+
+### Data Classification
+
+All data is classified into four levels (CRITICAL → SENSITIVE → INTERNAL → PUBLIC) with handling rules for each. Client credentials must never be stored in this repo — use credential references pointing to your password manager instead.
 
 ## Estimated Costs
 

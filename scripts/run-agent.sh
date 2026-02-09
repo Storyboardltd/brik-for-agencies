@@ -42,7 +42,7 @@ AGENT_DIR="agents/${AGENT_NAME}"
 # Validate agent exists
 if [ ! -f "${AGENT_DIR}/CLAUDE.md" ]; then
     echo "Error: Agent '${AGENT_NAME}' not found at ${AGENT_DIR}/CLAUDE.md"
-    echo "Available agents: maintenance, qa, content, seo, design, research, reports, sales"
+    echo "Available agents: maintenance, qa, content, seo, design, research, report-delivery, reports, sales"
     exit 1
 fi
 
@@ -77,9 +77,14 @@ echo "  Task:  ${TASK}"
 echo "  Date:  ${DATE}"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-# Log the invocation
+# Log the invocation (both human-readable and audit trail)
 mkdir -p "$(dirname $LOG_FILE)"
 echo "- [$(date +%H:%M)] ⏳ ${AGENT_NAME}: ${TASK}" >> "$LOG_FILE"
+
+# Audit trail — tamper-evident logging
+if [ -x "scripts/audit-logger.sh" ]; then
+    ./scripts/audit-logger.sh log "${AGENT_NAME}" "task-started" "${TASK}${CLIENT_SLUG:+ [client: ${CLIENT_SLUG}]}"
+fi
 
 # =============================================================================
 # INVOKE CLAUDE CODE
@@ -92,13 +97,17 @@ echo "- [$(date +%H:%M)] ⏳ ${AGENT_NAME}: ${TASK}" >> "$LOG_FILE"
 
 claude --print \
     --system-prompt "$(cat ${AGENT_DIR}/CLAUDE.md)" \
-    --append-system-prompt "Current date: ${DATE}. Log all actions to ${LOG_FILE}. Work directory: $(pwd)" \
+    --append-system-prompt "Current date: ${DATE}. Log all actions to ${LOG_FILE}. Work directory: $(pwd). Security policy: follow security/SECURITY-POLICY.md — never store credentials, never access files outside your scope, never include PII in logs." \
     --model claude-sonnet-4-5-20250929 \
     --max-turns 10 \
     "${CONTEXT}"
 
-# Log completion
+# Log completion (both human-readable and audit trail)
 echo "- [$(date +%H:%M)] ✅ ${AGENT_NAME}: Completed — ${TASK}" >> "$LOG_FILE"
+
+if [ -x "scripts/audit-logger.sh" ]; then
+    ./scripts/audit-logger.sh log "${AGENT_NAME}" "task-completed" "${TASK}${CLIENT_SLUG:+ [client: ${CLIENT_SLUG}]}"
+fi
 
 echo ""
 echo "✅ Agent ${AGENT_NAME} completed. Check ${LOG_FILE} for details."
