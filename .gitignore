@@ -1,0 +1,35 @@
+# Client data (contains sensitive business information)
+clients/*/config.yaml
+clients/*/health-log.md
+clients/*/reports/
+clients/*/content/
+!clients/.gitkeep
+
+# Logs
+logs/
+*.log
+
+# Environment and secrets
+.env
+.env.*
+credentials.*
+*.key
+*.pem
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (if any tooling is added)
+node_modules/
+
+# Temporary files
+tmp/
+*.tmp

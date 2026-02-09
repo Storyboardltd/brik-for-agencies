@@ -1,0 +1,45 @@
+name: "Sheffield Dental Practice"
+slug: sheffield-dental
+url: https://sheffielddental.co.uk
+staging_url: https://staging.sheffielddental.co.uk
+cms: wordpress
+cms_version: "6.4.2"
+hosting: siteground
+plan: premium
+monthly_fee: 750
+contract_start: 2024-03-15
+contact_name: "Dr. Sarah Mitchell"
+contact_email: sarah@sheffielddental.co.uk
+contact_phone: "0114 XXX XXXX"
+
+services:
+  - maintenance
+  - seo
+  - content
+  - reporting
+
+seo_targets:
+  primary_keywords:
+    - "dentist sheffield"
+    - "emergency dentist sheffield"
+    - "cosmetic dentist sheffield"
+  target_area: "Sheffield city centre, S1-S5"
+
+content_preferences:
+  tone: "professional, reassuring, warm"
+  blog_frequency: "2 per month"
+  topics_avoid: ["graphic medical imagery"]
+  topics_preferred: ["dental tips", "cosmetic dentistry", "family dental care"]
+
+notes: |
+  Dr. Mitchell is very particular about page speed and professional appearance.
+  She checks her own analytics weekly — always be ahead of anything she might notice.
+  Biggest competitor: Pearl Dental on Ecclesall Road.
+  They want to rank #1 for "dentist sheffield centre" — currently position 8.
+  Holiday hours change in August — update GBP and website well in advance.
+
+risk_factors:
+  churn_risk: low
+  last_contact: 2025-02-03
+  satisfaction: high
+  open_issues: 0
