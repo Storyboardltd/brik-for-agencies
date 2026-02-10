@@ -1,4 +1,4 @@
-# Agency Agents — AI Agent Team for Small Marketing Agencies
+# Brik — AI Agent Team for Small Marketing Agencies
 
 > Run a lean marketing agency with a team of AI agents handling maintenance, QA, content, SEO, design, research, reporting, and sales support — so the humans can focus on relationships and growth.
 
