@@ -5,7 +5,8 @@
 # Usage: ./workflows/daily.sh
 # =============================================================================
 
-set -euo pipefail
+set -uo pipefail
+# Note: -e intentionally omitted so one agent failing doesn't kill the whole workflow
 
 DATE=$(date +%Y-%m-%d)
 DAY_OF_WEEK=$(date +%u)  # 1=Monday, 7=Sunday
@@ -39,15 +40,15 @@ run_agent() {
     local agent_dir=$3
 
     echo -e "\n${GREEN}▸ Running ${agent_name}: ${task_description}${NC}"
-    echo "" >> "$LOG_FILE"
-    echo "### ${agent_name}" >> "$LOG_FILE"
-    echo "- [$(date +%H:%M)] ⏳ Starting: ${task_description}" >> "$LOG_FILE"
 
-    # This is where Claude Code would be invoked for each agent
-    # Using the agent-specific CLAUDE.md as context
-    echo -e "${YELLOW}  → claude -p agents/${agent_dir}/CLAUDE.md \"${task_description}\"${NC}"
-
-    echo "- [$(date +%H:%M)] ✅ Completed: ${task_description}" >> "$LOG_FILE"
+    # Invoke the agent via run-agent.sh (which calls claude --print)
+    if ./scripts/run-agent.sh "${agent_dir}" "${task_description}"; then
+        echo -e "${GREEN}  ✅ ${agent_name} completed successfully${NC}"
+    else
+        local exit_code=$?
+        echo -e "${RED}  ❌ ${agent_name} failed (exit code ${exit_code})${NC}"
+        echo "- [$(date +%H:%M)] ❌ ${agent_name}: FAILED — ${task_description} (exit code ${exit_code})" >> "$LOG_FILE"
+    fi
 }
 
 # =============================================================================

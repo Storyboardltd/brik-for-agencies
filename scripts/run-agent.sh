@@ -49,8 +49,9 @@ fi
 # Build context prompt
 CONTEXT="You are the ${AGENT_NAME} agent for this agency.\n\n"
 
-# Include client config if specified
+# Include client config — either a specific client or all clients
 if [ -n "$CLIENT_SLUG" ]; then
+    # Single client mode
     CLIENT_DIR="clients/${CLIENT_SLUG}"
     if [ -f "${CLIENT_DIR}/config.yaml" ]; then
         CONTEXT+="## Client Context\n"
@@ -59,6 +60,24 @@ if [ -n "$CLIENT_SLUG" ]; then
     if [ -f "${CLIENT_DIR}/health-log.md" ]; then
         CONTEXT+="## Recent Health Log\n"
         CONTEXT+="$(tail -50 ${CLIENT_DIR}/health-log.md)\n\n"
+    fi
+else
+    # All-clients mode — include every client config for multi-client tasks
+    CLIENT_COUNT=0
+    for config in clients/*/config.yaml; do
+        [ -f "$config" ] || continue
+        CLIENT_COUNT=$((CLIENT_COUNT + 1))
+        slug=$(basename "$(dirname "$config")")
+        CONTEXT+="## Client: ${slug}\n"
+        CONTEXT+="$(cat "$config")\n\n"
+        health_log="clients/${slug}/health-log.md"
+        if [ -f "$health_log" ]; then
+            CONTEXT+="### Recent Health Log\n"
+            CONTEXT+="$(tail -30 "$health_log")\n\n"
+        fi
+    done
+    if [ "$CLIENT_COUNT" -gt 0 ]; then
+        CONTEXT+="Total clients: ${CLIENT_COUNT}\n\n"
     fi
 fi
 
@@ -95,12 +114,12 @@ fi
 #   --allowedTools : restrict which tools the agent can use
 # =============================================================================
 
-claude --print \
+echo -e "${CONTEXT}" | claude --print \
     --system-prompt "$(cat ${AGENT_DIR}/CLAUDE.md)" \
     --append-system-prompt "Current date: ${DATE}. Log all actions to ${LOG_FILE}. Work directory: $(pwd). Security policy: follow security/SECURITY-POLICY.md — never store credentials, never access files outside your scope, never include PII in logs." \
     --model claude-sonnet-4-5-20250929 \
     --max-turns 10 \
-    "${CONTEXT}"
+    --allowedTools "Bash(curl:*),Bash(openssl:*),Bash(dig:*),Bash(whois:*),Bash(ping:*)" Read Write Edit Glob Grep WebFetch WebSearch
 
 # Log completion (both human-readable and audit trail)
 echo "- [$(date +%H:%M)] ✅ ${AGENT_NAME}: Completed — ${TASK}" >> "$LOG_FILE"
