@@ -1,12 +1,12 @@
-# Sheffield Agency — Service Packages
+# Storyboard Digital — Service Packages
 
 ## Package Tiers
 
-### 🥉 Basic — £350/month
+### Basic — £350/month
 **For:** Small businesses needing a reliable, secure, up-to-date website
 
 **Includes:**
-- WordPress core, theme & plugin updates (weekly)
+- CMS core updates and security patches (weekly)
 - Daily uptime monitoring
 - SSL certificate management
 - Monthly security scan
@@ -16,11 +16,12 @@
 - 1 hour of minor content changes/month
 - Email support (48hr response)
 
+**Platforms supported:** WordPress, Wix, Squarespace, custom sites
 **Agent coverage:** maintenance, qa, reports (basic)
 
 ---
 
-### 🥈 Standard — £600/month
+### Standard — £600/month
 **For:** Growing businesses wanting better visibility and a proactive partner
 
 **Everything in Basic, plus:**
@@ -38,7 +39,7 @@
 
 ---
 
-### 🥇 Premium — £900/month
+### Premium — £900/month
 **For:** Ambitious businesses serious about growth through their website
 
 **Everything in Standard, plus:**
@@ -62,7 +63,7 @@
 | Add-On | Monthly | Description |
 |--------|---------|-------------|
 | Extra blog posts | £100/post | SEO-optimized, locally relevant |
-| E-commerce support | £200/month | WooCommerce maintenance, product updates |
+| E-commerce support | £200/month | WooCommerce/Shopify maintenance, product updates |
 | Social media content | £150/month | 8 posts/month with copy and image briefs |
 | Google Ads management | £250/month + ad spend | Campaign setup, monitoring, optimization |
 | Emergency priority | £100/month | Guaranteed 2hr response for critical issues |
@@ -74,7 +75,7 @@
 |-------------|-------------|----------|
 | Brochure site (5-8 pages) | £2,000–£3,500 | 4-6 weeks |
 | Business site (10-15 pages) | £3,500–£6,000 | 6-8 weeks |
-| E-commerce (WooCommerce) | £5,000–£10,000 | 8-12 weeks |
+| E-commerce (WooCommerce/Shopify) | £5,000–£10,000 | 8-12 weeks |
 | Custom web app | £8,000+ | 10+ weeks |
 
 *All new builds include 3 months of Standard package free to demonstrate ongoing value.*
@@ -83,10 +84,10 @@
 
 | Target | Clients | Avg Package | Monthly Revenue |
 |--------|---------|-------------|-----------------|
-| Break-even on agents | 12 | £500 | £6,000 |
-| Comfortable | 20 | £575 | £11,500 |
-| 3x target | 28 | £600 | £16,800 |
-| Stretch goal | 35 | £625 | £21,875 |
+| Starting point | 3-5 | £450 | £1,350–£2,250 |
+| Break-even on agents | 8 | £500 | £4,000 |
+| Comfortable | 12 | £575 | £6,900 |
+| Growth target | 15 | £600 | £9,000 |
 
 ## Upsell Playbook
 

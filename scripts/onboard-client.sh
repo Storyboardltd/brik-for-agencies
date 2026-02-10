@@ -33,7 +33,7 @@ name: "BUSINESS NAME HERE"
 slug: SLUG_HERE
 url: https://example.co.uk
 staging_url: https://staging.example.co.uk  # Leave blank if no staging
-cms: wordpress  # wordpress | shopify | squarespace | custom | static
+cms: wordpress  # wordpress | webflow | wix | squarespace | shopify | custom | static
 cms_version: ""
 hosting: ""  # siteground | godaddy | 123-reg | other
 plan: standard  # basic | standard | premium
@@ -53,7 +53,7 @@ services:  # Which agent services are active for this client
 
 seo_targets:
   primary_keywords: []
-  target_area: "Sheffield"
+  target_area: ""  # e.g., "Manchester city centre", "Bristol and surrounding areas"
 
 content_preferences:
   tone: "professional"
@@ -72,8 +72,8 @@ risk_factors:
   open_issues: 0
 YAML
 
-# Replace slug placeholder
-sed -i "s/SLUG_HERE/${SLUG}/" "${CLIENT_DIR}/config.yaml"
+# Replace slug placeholder (macOS-compatible sed)
+sed -i '' "s/SLUG_HERE/${SLUG}/" "${CLIENT_DIR}/config.yaml"
 
 # Create health log
 cat > "${CLIENT_DIR}/health-log.md" << EOF

@@ -1,7 +1,16 @@
-# Agency Agents — Agent Team Workspace
+# Storyboard Digital — Agent Team Workspace
 
 ## Project Overview
-This is the Claude Code workspace for a small web/marketing agency. The agent team handles maintenance, QA, content, SEO, reporting, and sales support so the founders can focus on high-value work and in-person prospecting.
+This is the Claude Code workspace for **Storyboard Digital**, a UK-based full-service web design and digital marketing agency. The agent team handles maintenance, QA, content, SEO, reporting, and sales support so the two founders can focus on high-value work, client relationships, and new business growth.
+
+**Agency Profile:**
+- **Name:** Storyboard Digital
+- **Location:** United Kingdom
+- **Team:** 2 founders (both generalists — handling everything from dev to sales)
+- **Current Clients:** 1-5 (mixed industries, mixed platforms)
+- **Growth Target:** 10-15 clients within 6-12 months
+- **Platforms:** WordPress, Wix, Squarespace, and custom sites
+- **Client Types:** Local businesses, professional services, e-commerce, and more
 
 ## Ground Rules for ALL Agents
 

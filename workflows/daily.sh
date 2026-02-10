@@ -21,7 +21,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 echo -e "${BLUE}══════════════════════════════════════════════${NC}"
-echo -e "${BLUE}  Agency Agents — Daily Orchestration${NC}"
+echo -e "${BLUE}  Storyboard Digital — Daily Orchestration${NC}"
 echo -e "${BLUE}  ${DATE}${NC}"
 echo -e "${BLUE}══════════════════════════════════════════════${NC}"
 

@@ -1,42 +1,20 @@
-# Prospect Research Queue
-# Founder B adds prospects here. Sales agent picks them up during daily runs.
+# Prospect Research Queue — Storyboard Digital
+# Founders add prospects here. Sales agent picks them up during daily runs.
 # Format: Add new entries under 'pending'. Agent moves to 'researched' when done.
 
 pending:
-  # Example entry — Founder B fills these in after networking events
+  # Example entry — Founders fill these in after networking events
   # - slug: prospect-slug
   #   business_name: "Business Name"
   #   website: https://example.com
   #   industry: hospitality
-  #   location: "Kelham Island, Sheffield"
+  #   location: "Town/City, UK"
   #   contact_name: "John Smith"
   #   contact_role: "Owner"
-  #   how_found: "Met at Sheffield Chamber event 2025-02-06"
+  #   how_found: "Met at networking event 2026-02-09"
   #   notes: "Mentioned unhappy with current website. Gets most business from walk-ins."
-  #   meeting_date: 2025-02-12  # optional — if meeting already booked
+  #   meeting_date: 2026-02-15  # optional — if meeting already booked
   #   priority: high  # high | medium | low
-
-  - slug: peak-physio
-    business_name: "Peak Physiotherapy"
-    website: https://peakphysio-sheffield.co.uk
-    industry: healthcare
-    location: "Ecclesall Road, Sheffield"
-    contact_name: "Emma Hartley"
-    contact_role: "Practice Owner"
-    how_found: "Referral from Sheffield Dental (existing client)"
-    notes: "Website looks dated. No online booking. 4.8 stars on Google with 200+ reviews but website doesn't showcase them."
-    priority: high
-
-  - slug: kelham-kitchen
-    business_name: "Kelham Kitchen & Bar"
-    website: https://kelhamkitchen.co.uk
-    industry: hospitality
-    location: "Kelham Island, Sheffield"
-    contact_name: "Marcus Chen"
-    contact_role: "Co-owner"
-    how_found: "Spotted while walking Kelham Island — busy venue, terrible website"
-    notes: "Menu is a PDF. No online reservations. Instagram has 5k followers but website gets no love."
-    priority: medium
 
 researched: []
   # Agent moves completed research here with score
@@ -44,16 +22,16 @@ researched: []
   #   score: 78
   #   tier: hot
   #   brief_path: clients/_prospects/example/brief.md
-  #   researched_date: 2025-02-08
+  #   researched_date: 2026-02-09
 
 meetings_scheduled: []
-  # Founder B moves prospects here when meeting is booked
+  # Founders move prospects here when meeting is booked
   # Agent generates meeting prep brief
 
 completed: []
   # Won or lost — track for win/loss analysis
   # - slug: example
   #   outcome: won | lost | deferred
-  #   outcome_date: 2025-02-15
+  #   outcome_date: 2026-02-15
   #   monthly_value: 600
   #   notes: "Signed on standard package"
